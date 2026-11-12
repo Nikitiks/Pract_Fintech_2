@@ -1,24 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web3 forum</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f0f2f5; margin: 0; padding: 20px; }
+        .container { max-width: 700px; margin: 0 auto; }
+        h1 { font-size: 16px; word-break: break-all; }
+        button { padding: 8px 14px; border: none; border-radius: 6px; cursor: pointer; background: #0a66c2; color: #fff; }
+        button:hover { opacity: .85; }
+        button.danger { background: #d11a2a; }
+        button.secondary { background: #6c757d; }
+        textarea, input[type=text] { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; }
+        .panel { background: #fff; padding: 16px; border-radius: 10px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,.1); }
+        .row { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+        .card { background: #fff; padding: 16px; border-radius: 10px; margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0,0,0,.1); }
+        .card .author { font-size: 12px; color: #555; word-break: break-all; }
+        .card .content { margin: 10px 0; white-space: pre-wrap; }
+        .card .time { font-size: 12px; color: #888; }
+        .card .actions { display: flex; gap: 8px; margin-top: 10px; }
+    </style>
 </head>
 <body>
+<div class="container">
     <h1 hidden id="account_lbl"></h1>
     <button id="connection_btn">Connect</button>
 
     <div hidden id="dapp">
-        <button id="deleteAll">Delete All</button>
-        <textarea id="post_text"></textarea>
-        <br>
-        <button id="makePost_btn">Make post</button>
+        <div class="panel">
+            <textarea id="post_text" rows="3" placeholder="Що нового?"></textarea>
+            <div class="row">
+                <button id="makePost_btn">Make post</button>
+                <button id="deleteAll_btn" class="danger">Delete All</button>
+            </div>
+        </div>
+
+        <div class="panel">
+            <input type="text" id="author_filter" placeholder="Адреса автора 0x...">
+            <div class="row">
+                <button id="filter_btn">Show author posts</button>
+                <button id="myPosts_btn" class="secondary">My posts</button>
+                <button id="allPosts_btn" class="secondary">All posts</button>
+            </div>
+        </div>
 
         <div id="postList"></div>
     </div>
-    <script src=" https://cdn.jsdelivr.net/npm/web3@4.16.0/dist/web3.min.js "></script>
-    <script src="./contract_abi.js"></script>
-    <script src="./index.js"></script>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/web3@4.16.0/dist/web3.min.js"></script>
+<script src="./contract_abi.js"></script>
+<script src="./index.js"></script>
 </body>
 </html>
